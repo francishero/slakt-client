@@ -1,5 +1,5 @@
 import React from 'react'
-import {Message, Button, Input, Container, Header } from 'semantic-ui-react'
+import {Form, Message, Button, Input, Container, Header } from 'semantic-ui-react'
 import { graphql } from 'react-apollo'
 import gql from 'graphql-tag'
 
@@ -60,15 +60,25 @@ class Register extends React.Component {
     return (
   <Container text>
     <Header as='h2'>Register</Header>
+    <Form>
+    <Form.Field  error = { !!usernameError }>
     <Input name="username" onChange = {this.onChange } value={username}placeholder="username" fluid
-    error = { !!usernameError } />
+     />
+    </Form.Field  >
+    <Form.Field error = { !!emailError}>
     <Input name="email" onChange = {this.onChange } value={email}placeholder="Email" fluid 
-    error = { !!emailError} />
+     />
+    </Form.Field>
+    <Form.Field error = { !!passwordError }>
     <Input name="password" type="password" onChange = {this.onChange }
      value={password} placeholder="password" fluid 
-     error = { !!passwordError }/>
+     />
+     </Form.Field>
+
      <Button onClick= {this.onSubmit }>Submit</Button>
-     {
+
+     </Form>
+      {
       (usernameError || passwordError || emailError) ? (<Message 
       error 
       header="Something went wrong with the submission"
