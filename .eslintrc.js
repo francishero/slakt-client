@@ -4,6 +4,8 @@ module.exports = {
   rules: {
     'react/jsx-filename-extension': 0,
     'react/prop-types': 0,
+      "semi": 0,
+      "linebreak-style":0
   },
   globals: {
     document: 1,

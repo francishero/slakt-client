@@ -11,7 +11,7 @@ import 'semantic-ui-css/semantic.min.css';
 import Routes from './routes';
 import registerServiceWorker from './registerServiceWorker';
 
-const httpLink = createHttpLink({ uri: 'http://localhost:8081/graphql' });
+const httpLink = createHttpLink({ uri: 'http://localhost:5000/graphql' });
 
 const middlewareLink = setContext(() => ({
   headers: {

@@ -1,7 +1,7 @@
 import React from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import _ from 'lodash';
+import findIndex from 'lodash/findIndex';
 import decode from 'jwt-decode';
 
 import Channels from '../components/Channels';
@@ -12,7 +12,12 @@ const Sidebar = ({ data: { loading, allTeams }, currentTeamId }) => {
     return null;
   }
 
-  const teamIdx = _.findIndex(allTeams, ['id', currentTeamId]);
+  /*
+  is the currentTeam id from match.params.teamId good?
+  find the index of the team where the id equals to the currentTeam id
+  set the team on that index as the current logged in user active team
+   */
+  const teamIdx = currentTeamId ? findIndex(allTeams, ['id', parseInt(currentTeamId, 10)]) : 0
   const team = allTeams[teamIdx];
   let username = '';
   try {
