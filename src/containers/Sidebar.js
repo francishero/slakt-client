@@ -8,7 +8,7 @@ import Channels from '../components/Channels';
 import Teams from '../components/Teams';
 import AddChannelModal from '../components/addChannelModal'
 
-class Sidebar extends React.Component {
+export default class Sidebar extends React.Component {
     state= {
       openAddChannelModal: false,
     }
@@ -23,17 +23,7 @@ class Sidebar extends React.Component {
         })
     }
     render() {
-      const { data: { loading, allTeams }, currentTeamId } = this.props
-      if (loading) {
-        return null;
-      }
-      /*
-    is the currentTeam id from match.params.teamId good?
-    find the index of the team where the id equals to the currentTeam id
-    set the team on that index as the current logged in user active team
-     */
-      const teamIdx = currentTeamId ? findIndex(allTeams, ['id', parseInt(currentTeamId, 10)]) : 0
-      const team = allTeams[teamIdx];
+      const { teams, team } = this.props
       let username = '';
       try {
         const token = localStorage.getItem('token');
@@ -45,10 +35,7 @@ class Sidebar extends React.Component {
       return [
         <Teams
           key="team-sidebar"
-          teams={allTeams.map(t => ({
-                    id: t.id,
-                    letter: t.name.charAt(0).toUpperCase(),
-                }))}
+          teams={teams}
         />,
         <Channels
           key="channels-sidebar"
@@ -73,4 +60,4 @@ class Sidebar extends React.Component {
 
 
 
-export default graphql(allTeamsQuery)(Sidebar);
+
