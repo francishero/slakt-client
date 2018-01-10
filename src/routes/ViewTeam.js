@@ -39,5 +39,10 @@ const ViewTeam = ({ data: { loading, allTeams }, match: { params: { teamId, chan
         </AppLayout>
     );
 };
-
+/*
+In this component we do all the graphql stuff and just pass the data
+to the Sidebar, Header and Messages
+this is so we can do all computations in this one Component and not
+have to query the data in all components
+ */
 export default graphql(allTeamsQuery)(ViewTeam);
