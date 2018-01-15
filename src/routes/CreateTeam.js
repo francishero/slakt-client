@@ -24,6 +24,7 @@ class CreateTeam extends React.Component {
         variables: { name },
       });
     } catch (err) {
+      console.log('err-->',err)
       this.props.history.push('/login');
       return;
     }
